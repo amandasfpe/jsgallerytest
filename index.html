@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JS Gallery Test</title>
+		<script>document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            if (item.getAttribute('data-tags').includes(filter) || filter === 'all') {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+		</script>
+
+	</head>
+
+<body>
+
+<button class="filter-btn" data-filter="nature">Nature</button>
+<button class="filter-btn" data-filter="city">City</button>
+<button class="filter-btn" data-filter="all">Clear Filters</button>
+
+
+<div class="gallery-item" data-tags="nature, all">
+    Paper 1
+</div>
+<div class="gallery-item" data-tags="city, all">
+    Paper 2
+</div>
+
+
+</body>
+</html>
