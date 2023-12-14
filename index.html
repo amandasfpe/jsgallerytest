@@ -2,34 +2,45 @@
 <html>
 	<head>
 		<title>JS Gallery Test</title>
-		<script>document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const filter = this.getAttribute('data-filter');
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            if (item.getAttribute('data-tags').includes(filter) || filter === 'all') {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<script>$(document).ready(function() {
+    $('.filter-button').click(function() {
+        var filterValue = $(this).attr('data-filter');
+        
+        if (filterValue === 'all') {
+            $('.gallery-item').show();
+        } else {
+            $('.gallery-item').each(function() {
+                if ($(this).data('category') === filterValue) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
     });
 });
+
 		</script>
 
 	</head>
 
 <body>
 
-<button class="filter-btn" data-filter="nature">Nature</button>
-<button class="filter-btn" data-filter="city">City</button>
-<button class="filter-btn" data-filter="all">Clear Filters</button>
-
-
-<div class="gallery-item" data-tags="nature">
-    Paper 1
+<!-- Filters -->
+<div class="filters">
+    <button class="filter-button" data-filter="all">All</button>
+    <button class="filter-button" data-filter="nature">Nature</button>
+    <button class="filter-button" data-filter="city">City</button>
+    <!-- Add more filters as needed -->
 </div>
-<div class="gallery-item" data-tags="city">
-    Paper 2
+
+<!-- Gallery Items -->
+<div class="gallery">
+    <div class="gallery-item" data-category="nature"> <!-- Nature Item --> </div>
+    <div class="gallery-item" data-category="city"> <!-- City Item --> </div>
+    <!-- More items -->
 </div>
 
 
